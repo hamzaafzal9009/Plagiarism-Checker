@@ -39,7 +39,9 @@ array(
     <div id="wrapper">
         <div>
             <div class="container-fluid">
-              @include('layouts.navbar')
+              <div class="navbar-container">
+                @include('layouts.navbar')
+              </div>
               <div class="row justify-content-end">
                 <div class="col-sm-3">
                   @include('layouts.flash-message')

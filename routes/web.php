@@ -16,4 +16,9 @@
 // });
 Route::get('/', 'HomeController@index');
 Route::get('/about-us', 'HomeController@about');
+Route::resource('plagiarism-checker', 'PlagiarisamController')->only([
+  'index', 'store'
+]);
+// Route::get('plagiarism-checker', 'PlagiarisamController@index');
+// Route::post('plagiarism-checker/check', 'PlagiarisamController@check')->name('plagiarism-checker.check');
 // Route::resource('/','MainController');

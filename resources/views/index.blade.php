@@ -169,7 +169,7 @@ text-decoration: none
     </div>
     <div class="row mr-top-50">
       <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-        <a href="#" class="tool-link">
+        <a href="{{url('plagiarism-checker')}}" class="tool-link">
           <div class="tools-div">
             <i class="ti-files tools-icon"></i>
             <span class="tools-text">Plagiarism Checker</span>
