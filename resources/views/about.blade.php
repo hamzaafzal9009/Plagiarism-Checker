@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'About-us')
 @section('style')
+<style>
 .header-contact{
   min-height:100px;
   width:100%;
@@ -37,6 +38,7 @@
   font-size:14px;
   color:#777
 }
+</style>
 @endsection
 
 @section('content')

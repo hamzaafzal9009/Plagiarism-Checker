@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'HOME PAGE')
 @section('style')
+<style>
 .section-title{
 margin-top: 30px;
 background: rgb(239,98,159);
@@ -153,6 +154,7 @@ color: white
 color: white;
 text-decoration: none
 }
+</style>
 @endsection
 @section('content')
 <div class="header">

@@ -6,11 +6,6 @@
 <link rel="preload" href="{{ URL::asset('css/themify-icons.css') }}" as="style">
 <link rel="stylesheet" href="{{ URL::asset('css/themify-icons.css') }}">
 
-<link rel="preload" href="{{ URL::asset('css/css-circular-prog-bar.css') }}" as="style">
-<link rel="stylesheet" href="{{ URL::asset('css/css-circular-prog-bar.css') }}">
-
-<style>
 @yield('style')
-</style>
 </head>
 </body>

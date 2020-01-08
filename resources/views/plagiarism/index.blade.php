@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('title', 'Plagiarism Checker')
 @section('style')
+<link rel="prefetch" href="{{ URL::asset('css/css-circule.css') }}" as="stylesheet">
+<link rel="stylesheet" href="{{ URL::asset('css/css-circule.css') }}">
+<style>
 .card{
   -webkit-box-shadow: 0px 3px 19px -2px rgba(0,0,0,0.31);
   -moz-box-shadow: 0px 3px 19px -2px rgba(0,0,0,0.31);
@@ -51,6 +54,7 @@
   margin-top:20px
 }
 .st0b {
+  cursor: pointer;
   fill: transparent;
   stroke: #F5F5F5;
   stroke-width: 120;
@@ -59,17 +63,17 @@
   stroke-dashoffset: 0;
 }
 .st0-similar {
+
+  cursor: pointer;
   fill: transparent;
-  stroke: #28a745;
-  stroke-width: 124;
+  stroke: #b98bbb;
+  stroke-width: 75;
   stroke-miterlimit: 10;
   stroke-dasharray: 1311;
   stroke-dashoffset: 1311;
 }
-.st0-similar:hover{
-  stroke: #228e39;
-}
 .st0 {
+  cursor: pointer;
   fill: transparent;
   stroke: #E93D40;
   stroke-width: 120;
@@ -78,15 +82,18 @@
   stroke-dashoffset: 1311;
 }
 .lowtext {
+  cursor: pointer;
   fill: #9E9E9E;
 }
 .innerfont{
+  cursor: pointer;
   fill: #9E9E9E;
+  font-size:100px;
 }
 .percentBarTotal{
-  width:60%;
+  width:70%;
   display:block;
-  margin:auto
+  margin-top:-35px
 }
 .float-left{
   float:left
@@ -119,6 +126,19 @@
 .importance-div{
   margin-top:30px
 }
+.results-bar .text-uniq{
+  display: block;
+  text-align: center;
+    color: #4db53c;
+    font-weight: bold;
+}
+.results-bar .text-plag{
+  display: block;
+  text-align: center;
+    color: #f32013;
+    font-weight: bold;
+}
+</style>
 @endsection
 @section('content')
 
@@ -148,43 +168,47 @@
                 </div>
                 <button type="submit" class="btn btn-success btn-check-plag" name="button"> <i class="ti-search"></i> Check Plagiarism</button>
               </form>
-                <div class="row result">
+              <div class="row result">
+                @isset($data)
                   <div class="col-12 col-md-6">
-                      {{-- <div class="progress">
-                          <div class="progress-bar checked-bar progress-bar-striped bg-success progress-bar-animated" 
-                            role="progressbar" aria-valuenow="100" aria-valuemin="0" a
-                            ria-valuemax="100">
-                            100% Checked
-                          </div>
-                        </div> --}}
-                        <svg class="percentBarTotal" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1020 750" xml:space="preserve">
-                          <path class="st0b" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1"></path>
-                          <path class="st0-similar" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1" style="stroke-dashoffset: 0px;"></path>
-                          <path class="st0" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1" style="stroke-dashoffset: 1311px;"></path>
-                          <text class="innerfont plagCount" x="50%" y="85%" text-anchor="middle" font-size="150">100%</text>
-                          <text class="lowtext" x="8%" y="98%" text-anchor="middle" font-size="70">0%</text>
-                          <text class="lowtext" x="50%" y="98%" text-anchor="middle" font-size="70">Checked</text>
-                          <text class="lowtext" x="91%" y="98%" text-anchor="middle" font-size="70">100%</text>
-                        </svg>
-                  </div>
+                    <svg class="percentBarTotal" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1020 750" xml:space="preserve">
+                      <path class="st0b" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1"></path>
+                      <path class="st0-similar" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1" style="stroke-dashoffset: 0px;"></path>
+                      <path class="st0" d="M82.9,641.79c0-230.36,186.74-417.1,417.1-417.1s417.1,186.74,417.1,417.1" style="stroke-dashoffset: 1311px;"></path>
+                      <text class="innerfont plagCount" x="50%" y="85%" text-anchor="middle" font-size="150">100%</text>
+                      <text class="lowtext" x="8%" y="98%" text-anchor="middle" font-size="70">0%</text>
+                      <text class="lowtext" x="50%" y="98%" text-anchor="middle" font-size="70">Checked</text>
+                      <text class="lowtext" x="91%" y="98%" text-anchor="middle" font-size="70">100%</text>
+                    </svg>
+                  </div>  
                   <div class="col-12 col-md-6">
-                      <div class="progress-circle over50 p100 float-left">
-                        <span>100%</span>
-                        <div class="left-half-clipper">
-                          <div class="first50-bar"></div>
-                          <div class="value-bar"></div>
+                      
+                    <div class="row">
+                      <div class="col-lg-6 results-bar">
+                        <div class="c100 p{{$data['unique']}} green">
+                            <span>{{$data['unique']}}%</span>
+                            <div class="slice">
+                                <div class="bar"></div>
+                                <div class="fill"></div>
+                            </div>
                         </div>
+                       <span class="text-uniq"> Unique </span>
                       </div>
-                      <div class="progress-circle over50 p51 float-left">
-                          <span>51%</span>
-                          <div class="left-half-clipper">
-                              <div class="first50-bar"></div>
-                              <div class="value-bar"></div>
-                          </div>
+                      <div class="col-lg-6 results-bar">
+                        <div class="c100 p{{$data['plagrized']}} red">
+                            <span>{{$data['plagrized']}}% </span>
+                            <div class="slice">
+                                <div class="bar"></div>
+                                <div class="fill"></div>
+                            </div>
                         </div>
-                          
+                        <span class="text-plag"> Plagiarized </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                @endisset  
+                 
+              </div>
             </div>
             
           </div>

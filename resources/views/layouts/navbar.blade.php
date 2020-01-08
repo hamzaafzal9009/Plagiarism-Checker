@@ -7,13 +7,13 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item first">
-<a class="nav-link" href="#"> Plagiarism Checker</a>
+<a class="nav-link" href="{{ url('plagiarism-checker') }}"> Plagiarism Checker</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="#">Word Counter</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="#">IP Locator</a>
+<a class="nav-link" href="{{ url('what-is-my-ip') }}">What is My IP?</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="#">Tools</a>
